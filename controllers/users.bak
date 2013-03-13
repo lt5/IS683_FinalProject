@@ -1,0 +1,25 @@
+
+/*
+ * GET home page.
+ */
+
+var mongoose = require('mongoose')
+  , User = mongoose.model('User');
+
+
+exports.index = function(req, res) {
+  var user = new User();
+      user.username = 'Keith Williams';
+      user.save(function (err) {
+        if(err) {
+          console.log(err);
+        }
+      });
+  
+  User.find({}, function(err, users) {
+    res.render('index', { 
+      title: 'Personal Learning Platform', 
+      users: users 
+    });
+ });
+}
