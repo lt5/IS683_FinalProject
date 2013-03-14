@@ -5,10 +5,10 @@ var mongoose = require('mongoose')
  * User Schema
  */
 
-var UserSchema = new Schema({
+var Account = new Schema({
   name: String,
   email: String,
   provider: String,
 })
-UserSchema.plugin(passportLocalMongoose);
-mongoose.model('User', UserSchema)
+Account.plugin(passportLocalMongoose);
+module.exports = mongoose.model('Account', Account);

@@ -6,6 +6,14 @@
 var mongoose = require('mongoose')
   , User = mongoose.model('User');
 
+exports.main = function(req, res) {
+  User.find({}, function(err, users) {
+    res.render('users', {
+      title: 'Personal Learning Platform',
+      users: users
+    });
+ });
+}
 
 exports.list = function(req, res) {
   User.find({}, function(err, users) {
@@ -22,28 +30,23 @@ exports.jsonlist = function(req, res) {
 }
 
 exports.auth = function (req, res) {
-   if(req.cookies.lasturl) {
-     res.redirect(req.cookies.lasturl);
-     res.clearCookie('lasturl');
-   } else {
-   req.flash('info', 'Flash is back!'); 
-   res.render('user', {
+    req.flash('info', 'Flash is back!');
+    res.render('user', {
       title: 'Logged In 2',
       id: 'id',
       username: 'username',
       password: 'password',
       messages: req.flash('info') 
   });
-    }
+    
 }
 exports.login = function (req, res) {
-  console.log(req.cookies.lasturl);
   res.render('login', {
-    title: "login Page",
-    id: 'id',
-    username: 'username',
-    password: 'password' 
-  });
+  title: "login Page",
+  id: 'id',
+  username: 'username',
+  password: 'password' 
+});
 }
 
 exports.findById = function (req, res) {

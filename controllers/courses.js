@@ -15,6 +15,11 @@ exports.list = function(req, res) {
     });
  });
 }
+exports.jsonlist = function(req, res) {
+  Course.find({}, function(err, courses) {
+    res.send(courses);  
+  });
+}
 exports.findById = function (req, res) {
   Course.findOne({_id : req.params.cid}, function(err, course) {
       console.log(course);
