@@ -1,18 +1,13 @@
 extends layout
 
 block content
+  script(src='/socket.io/socket.io.js')
+  script(type='text/javascript', src="./scripts/main.js")
   h1= title
   p Welcome to #{title}
   div
-    table
-      thead
-        tr 
-          th Course ID
-          th Course Name
-      tbody
-        each course, i in courses
-          tr(class=(i % 2 == 0) ? 'odd' : 'even')
-           td= course.cid
-           td 
-              a(href='/courses/' + course._id) #{course.title}
+    select#CountrySelector
+       each country, i in energyUse
+        option(value=country.id) #{country.country}
 
+  div#ChartContainer

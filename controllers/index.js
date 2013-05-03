@@ -4,21 +4,18 @@
  */
 
 var mongoose = require('mongoose')
-  , Course = mongoose.model('Course');
+  , energyUse = mongoose.model('energyUse');
 
 
 exports.index = function(req, res) {
-  var course = new Course();
-      course.cid = 'IS 117';
-      course.title = 'Introduction to Building Websites';
-      course.save(function (err) {
-        console.log(err);
-      });
-  
-  Course.find({}, function(err, courses) {
+  energyUse.find({}, function(err, rsp) {
     res.render('index', { 
-      title: 'Personal Learning Platform', 
-      courses: courses 
+      title: 'IS683 - Data Visualization: Energy Use Data', 
+      energyUse: rsp,
+      foo: 'bar',
+      country: rsp.country,
+      data: rsp.data,
+      id: rsp._id 
     });
  });
 }
